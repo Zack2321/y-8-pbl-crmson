@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .collapsible {
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .collapsible:hover {
+            background-color: rgb(249, 166, 166);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .content {
+            padding: 15px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: -10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .content p {
+            margin: 0;
+            color: black;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align: center; color: black;">Reference Links</h2>
+
+<button class="collapsible">Reference Link #1</button>
+<div class="content">
+    <a href="https://www.tripadvisor.com/Hotel_Review-g317112-d590590-Reviews-Myanmar_Treasure_Resort_Bagan-Bagan_Mandalay_Region.html" target="_blank" style="color: danger; text-decoration: none; font-weight: bold;">https://www.tripadvisor.com/Hotel_Review-g317112-d590590-Reviews-Myanmar_Treasure_Resort_Bagan-Bagan_Mandalay_Region</a>
+</div>
+<button class="collapsible">Reference Link #2</button>
+<div class="content">
+    <a href="https://bagandaytours.com/myanmar-treasure-resort/" target="_blank" style="color: danger; text-decoration: none; font-weight: bold;">https://bagandaytours.com/myanmar-treasure-resort/</a>
+</div>
+<button class="collapsible">Reference Link #3</button>
+<div class="content">
+    <a href="https://theportuguesetraveler.com/myanmar/myanmar-a-hidden-treasure/" target="_blank" style="color: danger; text-decoration: none; font-weight: bold;">https://theportuguesetraveler.com/myanmar/myanmar-a-hidden-treasure/</a>
+</div>
+<button class="collapsible">Reference Link #4</button>
+<div class="content">
+    <a href="https://www.researchgate.net/figure/Locations-of-primary-gold-deposits-in-Myanmar_fig2_321079033" target="_blank" style="color: danger; text-decoration: none; font-weight: bold;">https://www.researchgate.net/figure/Locations-of-primary-gold-deposits-in-Myanmar_fig2_321079033</a>
+</div>
+<button class="collapsible">Reference Link #5</button>
+<div class="content">
+    <a href="https://theportuguesetraveler.com/myanmar/myanmar-a-hidden-treasure/" target="_blank" style="color: danger; text-decoration: none; font-weight: bold;">https://theportuguesetraveler.com/myanmar/myanmar-a-hidden-treasure/</a>
+</div>
+<script>
+    const collapsibles = document.querySelectorAll(".collapsible");
+
+    collapsibles.forEach(button => {
+        button.addEventListener("click", function() {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

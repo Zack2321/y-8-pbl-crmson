@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ruby</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="logo.png">
+  </head>
+  <style>
+     body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Read More Section */
+    .more-text {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+        opacity: 0;
+    }
+    .read-more-btn:checked ~ .more-text {
+        max-height: 500px;
+        opacity: 1;
+        animation: fadeIn 0.5s ease-out;
+    }
+    .read-more-btn { display: none; }
+    .read-more-label {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 25px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .read-more-label:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+    .read-more-label:active { transform: translateY(0); }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .read-more-label i {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+    }
+    .read-more-btn:checked ~ .read-more-label i {
+        transform: rotate(180deg);
+    }
+    /* Navbar and Footer (unchanged) */
+    .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+
+    @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+    .navbar-brand {
+            color: white;
+            font-weight: bold;
+        }
+
+    .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            padding: 10px 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+    .navbar-nav .nav-link:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+    .navbar-nav .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+    .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+
+    .navbar.navbar-expand-lg {
+            background: rgba(255, 0, 0, 0.7);
+        }
+
+    .footer {
+            background-color: #222;
+            color: white;
+            padding: 50px 0;
+        }
+
+    .footer h5 {
+            font-weight: bold;
+            color: #f4a029;
+            margin-bottom: 20px;
+        }
+
+    .footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+    .footer a:hover {
+            color: #f4a029;
+        }
+
+    .footer .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: transparent;
+            border: 2px solid #f4a029;
+            border-radius: 50%;
+            font-size: 22px;
+            margin: 5px;
+            transition: all 0.3s ease-in-out;
+            color: white;
+        }
+
+    .footer .social-icons a:hover {
+            background-color: #f4a029;
+            color: black;
+            transform: scale(1.1);
+        }
+
+    .footer .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+    .footer .contact-info i {
+            color: #f4a029;
+        }
+
+    .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+    .footer-logo img {
+            width: 120px;
+            height: auto;
+        }
+
+    .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #bbb;
+        }
+
+    .footer-bottom p {
+            margin: 0;
+        }
+
+    /* Section animations */
+    #about,
+    #gemstones,
+    #history,
+    #ruby-land {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+    #about { animation-delay: 0.2s; }
+    #gemstones { animation-delay: 0.4s; }
+    #history { animation-delay: 0.6s; }
+    #ruby-land { animation-delay: 0.8s; }
+
+    @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    .content {
+            max-width: 600px;
+            margin: auto;
+        }
+
+    /* Navigation scroll box */
+    #nav-scroll {
+            top: 20px;
+            width: 250px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+    .nav-pills .nav-link {
+            color: #333;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+    .nav-pills .nav-link:hover {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+    .nav-pills .nav-link.active {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+    img {
+      transition: transform 0.3s ease-in-out;
+    }
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Updated .content-img: removed unwanted right margin */
+    .content-img {
+      width: 500px;
+      margin-right: 0;
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <img src="logo.png" width="50px">
+          &nbsp;&nbsp;&nbsp;
+          <a class="navbar-brand" href="#">Myanmar Treasure</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="gems.html">Gems</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="About Us.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact us.html">Contact Us</a>
+              </li>
+              <!-- Added Sign In Button -->
+              <li class="nav-item">
+                <button type="button" class="btn btn-outline-light ms-2" data-bs-toggle="modal" data-bs-target="#signInModal" style="margin-top: 5px;">
+                  Sign In
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <!-- Sign In Modal (Modified with a left image) -->
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signInModalLabel">Sign In</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <!-- Left Column: Image (visible on medium and larger screens) -->
+              <div class="col-md-4 d-none d-md-block">
+                <img src="sign_inpic.webp" alt="Sign In Image" class="img-fluid">
+              </div>
+              <!-- Right Column: Sign In Form -->
+              <div class="col-md-8">
+                <form>
+                  <div class="mb-3">
+                    <label for="signInEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="signInEmail" placeholder="name@example.com">
+                  </div>
+                  <div class="mb-3">
+                    <label for="signInPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="signInPassword" placeholder="Password">
+                  </div>
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Sign In</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row mt-5">
+        <h2 class="text-center"><b>Ruby</b></h2>
+        <p class="text-center">Feel the passion and power of Ruby</p>
+        <br>
+        <div class="col-md-6">
+            <h2>Information and Modern Developments</h2>
+            <p>
+              Advancements in synthetic ruby production, such as the Verneuil process, provide more accessible alternatives for industrial applications and jewelry. This method involves melting aluminum oxide and adding a small amount of chromium to create synthetic rubies that mimic the appearance of natural ones. Synthetic rubies are often used in high-tech industries, such as laser technology, due to their ability to withstand extreme conditions. Additionally, they are increasingly popular in more affordable jewelry options, offering a way for people to own rubies without the steep cost of natural stones. However, natural rubies from renowned sources like Myanmar continue to be prized for their exceptional quality and unique character. These rubies, particularly those from the Mogok region, are considered among the finest in the world due to their rich color and clarity. Natural rubies often exhibit distinct characteristics, such as unique inclusions, which are seen as a hallmark of authenticity. The rarity and demand for high-quality natural rubies, especially those with minimal treatment, contribute to their enduring value. Myanmar rubies are known for their “pigeon blood” color, a deep red with a hint of blue, which is highly sought after by collectors and jewelers. The continued discovery of rubies in Myanmar and other regions adds to the excitement and intrigue surrounding the gemstone market, maintaining the status of rubies as one of the most treasured gemstones in the world.
+            </p>
+        </div>
+        <div class="col-md-6">
+                <!-- Updated inline style: extra margin removed and using the class "content-img" -->
+                <img src="ruby5.jpg" style="width: 500px;" alt="Diamond" class="content-img">
+        </div>
+      </div>
+    </div>
+    <br>
+    <!-- About Section -->
+    <section id="about" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="ruby3.webp" alt="About Myanmar Gemstones" class="img-fluid rounded">
+          </div>
+          <div class="col-lg-6">
+            <h2>Physical Properties</h2>
+            <p>
+              Rubies are highly prized for their exceptional hardness, ranking 9 on the Mohs scale, making them nearly as hard as diamonds and perfect for daily wear. As a red variety of corundum (aluminum oxide), the presence of chromium within the gemstone imparts its signature red hue, which can vary from deep red to a more intense, vibrant shade. In terms of optical properties, rubies are known for their high refractive index, which allows them to reflect light brilliantly. The dispersion within rubies further contributes to their scintillating sparkle, enhancing their beauty and making them a favorite in fine jewelry.
+              The unique combination of hardness and color makes rubies a durable yet visually captivating gemstone. Their brilliant sparkle is amplified when expertly cut, maximizing their refractive properties. Due to their intense color and glow, rubies are often used as the centerpiece in engagement rings and other precious jewelry.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <!-- Ruby Land Section -->
+    <section id="ruby-land" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>Ruby in Myanmar</h2>
+            <p>
+              Myanmar is globally renowned for its rich deposits of precious gemstones, particularly rubies, sapphires, and jade. While diamonds are not as abundant as these gemstones, small-scale diamond discoveries have been reported in certain regions. The country’s geological conditions suggest the possibility of undiscovered diamond deposits, particularly in areas with ancient riverbeds and mineral-rich soils. Although Myanmar does not have large-scale diamond mining operations like South Africa or Russia, its gemstone trade plays a significant role in the national economy. Many local miners and traders rely on the industry for their livelihoods, contributing to the country’s cultural and economic heritage. Ongoing geological surveys and exploration efforts continue to assess Myanmar’s potential for future diamond discoveries.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <img src="ruby4.jpg" alt="Ruby Land" class="img-fluid rounded">
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section id="about" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="ruby6.jpg" alt="About Myanmar Gemstones" class="img-fluid rounded">
+          </div>
+          <div class="col-lg-6">
+            <h2>Uses</h2>
+            <p>
+              Rubies are traditionally set in fine jewelry—rings, necklaces, and earrings—and are prized for their aesthetic appeal. Their rich red color and brilliance make them a favorite choice for engagement rings and heirloom pieces. Many high-end jewelry brands incorporate rubies into their most luxurious designs, often pairing them with diamonds for added elegance. Their hardness and durability also make them useful in certain industrial applications, such as precision lasers and high-wear instruments. The first working laser, developed in 1960, used a ruby crystal to generate a powerful light beam. Beyond ornamentation, rubies have inspired art and folklore, symbolizing power and vitality. Many cultures believed that rubies possessed mystical properties, offering protection and enhancing personal strength. Ancient warriors wore rubies into battle, believing they would grant them courage and victory. In literature and mythology, rubies are often depicted as treasures of great value, sought after by kings and adventurers alike. Today, rubies remain one of the most coveted gemstones, blending history, beauty, and function in remarkable ways.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section id="ruby-land" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>History</h2>
+            <p>
+              Across cultures, rubies have been associated with royalty and divine favor. Ancient texts and artifacts from India, Southeast Asia, and the Middle East frequently mention rubies as symbols of passion, courage, and prosperity. Over centuries, the gemstone has maintained its allure, influencing royal regalia and jewelry traditions worldwide. Kings and emperors often adorned their crowns and ceremonial robes with rubies, believing they granted wisdom and protection. In medieval Europe, rubies were thought to bring good fortune and ward off misfortune. Many historical accounts describe rulers gifting rubies to allies as tokens of loyalty and strength. The deep red hue of rubies has also been linked to the heart, symbolizing deep love and devotion. Today, rubies continue to be prized in high-end jewelry collections, embodying luxury and timeless elegance.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <img src="ruby7.jpg" alt="Ruby Land" class="img-fluid rounded">
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section id="about" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="ruby.jpg" alt="About Myanmar Gemstones" class="img-fluid rounded">
+          </div>
+          <div class="col-lg-6">
+            <h2>Purification and Enhancement</h2>
+            <p>
+              Many natural rubies undergo heat treatment to improve clarity and intensify their color. Modern gemological techniques—including controlled heating and sometimes diffusion treatments—help remove surface imperfections and enhance overall appearance. In Myanmar, both traditional and contemporary methods are used to maximize the gem’s natural beauty while ensuring ethical sourcing practices. Skilled artisans carefully assess each ruby before treatment to determine the best enhancement method. Advanced spectroscopy and microscopic analysis are used to verify the authenticity and quality of treated rubies. While heat treatment is widely accepted in the industry, untreated rubies with exceptional clarity and color command significantly higher prices. Ethical sourcing efforts focus on minimizing environmental impact and ensuring fair wages for miners and workers. Continuous advancements in gemology allow experts to refine enhancement processes while preserving the natural essence of each ruby.
+            </p>          
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section id="ruby-land" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>Special About Ruby</h2>
+            <p>
+              Ruby’s deep red glow and rarity have imbued it with symbolic meaning—representing love, power, and eternal youth. Throughout history, it has been cherished by royalty and warriors, believed to bring protection, wisdom, and success in battle. The gemstone’s intense color comes from trace amounts of chromium, which also enhances its natural fluorescence. High-quality rubies, especially those from Myanmar, are among the most valuable gemstones in the world. Their durability, second only to diamonds, makes them ideal for everyday wear and long-lasting jewelry. The finest rubies display a deep red color with a slight bluish tint, often referred to as "pigeon blood" rubies. Ancient cultures believed that wearing a ruby could enhance vitality, improve blood circulation, and bring good fortune. In Hindu mythology, rubies are associated with the sun and are believed to offer divine protection. Warriors in ancient times embedded rubies in their armor, thinking they would grant them invincibility in battle. The Mogok region of Myanmar is famous for producing some of the world's most prized rubies. Some legends claim that rubies glow from within, as if they contain an inner flame. The name “ruby” comes from the Latin word "ruber," meaning red. Synthetic rubies have been developed for industrial and decorative purposes, but natural rubies remain highly valuable. Rubies played a crucial role in science, as the first working laser in 1960 used a ruby crystal. The timeless beauty and historical significance of rubies make them one of the most cherished gemstones in the world.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <img src="ruby8.jpg" alt="Ruby Land" class="img-fluid rounded">
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <center><a href="gems.html" class="btn btn-danger">Back</a></center>
+    <br>
+    <br><br><br>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row text-center text-md-start">
+          <div class="col-md-4 footer-logo text-center">
+            <div class="d-flex flex-column align-items-center">
+              <img src="logo.png" alt="Logo" class="img-fluid">
+              <h4 class="mt-2">Myanmar Treasure</h4>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Access</h5>
+            <ul>
+              <li><a href="About Us.html">About Us</a></li>
+              <li><a href="contact us.html">Contact Us</a></li>
+              <li><a href="gems.html">Gems</a></li>
+              <li><a href="References link.html">Reference Link</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Contact Us</h5>
+            <p>myanmartreasuregroup123@gmail.com</p>
+            <div class="contact-info">
+              <i class="fa-solid fa-phone"></i> +959264342335, +959428234467
+            </div>
+            <div class="social-icons">
+              <a href="https://x.com/twitter?lang=en"><i class="fa-brands fa-twitter"></i></a>
+              <a href="https://www.pinterest.com/"><i class="fa-brands fa-pinterest"></i></a>
+              <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+              <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom text-center"> 
+          <p> &copy; 2025 Myanmar Treasure. All Rights Reserved</p>
+          <p><a href="https://www.termsfeed.com/live/f4365038-c87e-47ec-9135-f7bffbd5c918">Terms & Conditions</a> | <a href="https://www.termsfeed.com/live/8b8df691-f3bb-4752-935e-a0461e39d33a">Privacy Policy</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+            crossorigin="anonymous"></script>
+  </body>
+</html>

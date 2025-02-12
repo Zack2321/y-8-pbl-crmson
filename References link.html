@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Myanmar Treasure: References Link</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="logo.png">
+    <style>
+        .accordion{
+            --bs-accordion-btn-bg: rgb(241, 241, 92);
+            --bs-accordion-active-bg: rgb(189, 66, 66);
+            --bs-accordion-active-color: rgb(244, 250, 255);
+            --bs-accordion-btn-focus-box-shadow: none;
+            --bs-accordion-color: black;
+            --bs-accordion-bg: rgb(91, 176, 255);
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        .navbar-brand { color: white; font-weight: bold; }
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            padding: 10px 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+        .navbar-nav .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        .navbar.navbar-expand-lg {
+            background: rgba(255, 0, 0, 0.7);
+        }
+        .navbar-nav .nav-link {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 20px;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #f8f9fa;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .footer {
+            background-color: #222;
+            color: white;
+            padding: 50px 0;
+        }
+
+        .footer h5 {
+            font-weight: bold;
+            color: #f4a029;
+            margin-bottom: 20px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .footer a:hover {
+            color: #f4a029;
+        }
+
+        .footer .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: transparent;
+            border: 2px solid #f4a029;
+            border-radius: 50%;
+            font-size: 22px;
+            margin: 5px;
+            transition: all 0.3s ease-in-out;
+            color: white;
+        }
+
+        .footer .social-icons a:hover {
+            background-color: #f4a029;
+            color: black;
+            transform: scale(1.1);
+        }
+
+        .footer .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .footer .contact-info i {
+            color: #f4a029;
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            width: 120px;
+            height: auto;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+        }
+        .collapsible {
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .collapsible:hover {
+            background-color: rgb(249, 166, 166);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .content {
+            padding: 15px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: -10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .content p {
+            margin: 0;
+            color: black;
+            font-size: 16px;
+        }
+        img {
+      transition: transform 0.3s ease-in-out;
+    }
+    img:hover {
+      transform: scale(1.05);
+    }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <img src="logo.png" width="50px">
+          &nbsp;&nbsp;&nbsp;
+          <a class="navbar-brand" href="#">Myanmar Treasure</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="gems.html">Gems</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="About Us.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact us.html">Contact Us</a>
+              </li>
+              <!-- Added Sign In Button -->
+              <li class="nav-item">
+                <button type="button" class="btn btn-outline-light ms-2" data-bs-toggle="modal" data-bs-target="#signInModal" style="margin-top: 5px;">
+                  Sign In
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+      <!-- Sign In Modal (Modified with a left image) -->
+      <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="signInModalLabel">Sign In</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <!-- Left Column: Image (visible on medium and larger screens) -->
+                <div class="col-md-4 d-none d-md-block">
+                  <img src="sign_inpic.webp" alt="Sign In Image" class="img-fluid">
+                </div>
+                <!-- Right Column: Sign In Form -->
+                <div class="col-md-8">
+                  <form>
+                    <div class="mb-3">
+                      <label for="signInEmail" class="form-label">Email address</label>
+                      <input type="email" class="form-control" id="signInEmail" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                      <label for="signInPassword" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="signInPassword" placeholder="Password">
+                    </div>
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="rememberMe">
+                      <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    <br>
+   
+<h2 style="text-align: center; color: black;">Reference Links</h2>
+
+<button class="collapsible">Tripadvisor</button>
+<div class="content">
+    <a href="https://www.tripadvisor.com/Hotel_Review-g317112-d590590-Reviews-Myanmar_Treasure_Resort_Bagan-Bagan_Mandalay_Region.html" target="_blank" style="color: danger; text-decoration: none; font-weight: bold;">https://www.tripadvisor.com/Hotel_Review-g317112-d590590-Reviews-Myanmar_Treasure_Resort_Bagan-Bagan_Mandalay_Region</a>
+</div>
+<button class="collapsible">Bagandaytours</button>
+<div class="content">
+    <a href="https://bagandaytours.com/myanmar-treasure-resort/" target="_blank" style="color: danger; text-decoration: none; font-weight: bold;">https://bagandaytours.com/myanmar-treasure-resort/</a>
+</div>
+<button class="collapsible">Theportuguesetraveler</button>
+<div class="content">
+    <a href="https://theportuguesetraveler.com/myanmar/myanmar-a-hidden-treasure/" target="_blank" style="color: danger; text-decoration: none; font-weight: bold;">https://theportuguesetraveler.com/myanmar/myanmar-a-hidden-treasure/</a>
+</div>
+<button class="collapsible">Researchgate</button>
+<div class="content">
+    <a href="https://www.researchgate.net/figure/Locations-of-primary-gold-deposits-in-Myanmar_fig2_321079033" target="_blank" style="color: danger; text-decoration: none; font-weight: bold;">https://www.researchgate.net/figure/Locations-of-primary-gold-deposits-in-Myanmar_fig2_321079033</a>
+</div>
+<button class="collapsible">Inledaytours</button>
+<div class="content">
+    <a href="https://inledaytours.com/myanmar-treasure-inle-lake/" target="_blank" style="color: danger; text-decoration: none; font-weight: bold;">https://theportuguesetraveler.com/myanmar/myanmar-a-hidden-treasure/</a>
+</div>
+    <script>
+        const collapsibles = document.querySelectorAll(".collapsible");
+    
+        collapsibles.forEach(button => {
+            button.addEventListener("click", function() {
+                this.classList.toggle("active");
+                const content = this.nextElementSibling;
+    
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        });
+    </script>
+    <br><br><br>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row text-center text-md-start">
+        <div class="col-md-4 footer-logo text-center">
+          <div class="d-flex flex-column align-items-center">
+            <img src="logo.png" alt="Logo" class="img-fluid">
+            <h4 class="mt-2">Myanmar Treasure</h4>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Access</h5>
+          <ul class="list-unstyled">
+            <li><a href="About Us.html">About Us</a></li>
+            <li><a href="contact us.html">Contact Us</a></li>
+            <li><a href="gems.html">Gems</a></li>
+            <li><a href="References link.html">Reference Link</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact Us</h5>
+          <p>myanmartreasuregroup123@gmail.com</p>
+          <div class="contact-info">
+            <i class="fa-solid fa-phone"></i> +95264342335, +95428234467
+          </div>
+          <div class="social-icons">
+            <a href="https://x.com/twitter?lang=en"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.pinterest.com/"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p> &copy; 2025 Myanmar Treasure. All Rights Reserved</p>
+        <p><a href="https://www.termsfeed.com/live/f4365038-c87e-47ec-9135-f7bffbd5c918">Terms & Conditions</a> | <a href="https://www.termsfeed.com/live/8b8df691-f3bb-4752-935e-a0461e39d33a">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

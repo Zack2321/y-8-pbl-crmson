@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sapphire</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="logo.png">
+  </head>
+  <style>
+    /* Read More Section */
+    .more-text {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+        opacity: 0;
+    }
+    .read-more-btn:checked ~ .more-text {
+        max-height: 500px; /* Adjust based on content */
+        opacity: 1;
+        animation: fadeIn 0.5s ease-out;
+    }
+    .read-more-btn {
+        display: none;
+    }
+    .read-more-label {
+        display: inline-block;
+        background-color: #007bff; /* Bootstrap primary color */
+        color: white;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 25px; /* Rounded button */
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .read-more-label:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+        transform: translateY(-2px); /* Slight lift on hover */
+    }
+    .read-more-label:active {
+        transform: translateY(0); /* Reset on click */
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .read-more-label i {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+    }
+    .read-more-btn:checked ~ .read-more-label i {
+        transform: rotate(180deg); /* Rotate icon when expanded */
+    }
+    
+    .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+    @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+    .navbar-brand { color: white; font-weight: bold; }
+    .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            padding: 10px 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+    .navbar-nav .nav-link:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+    .navbar-nav .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+    .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+    .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+    .navbar.navbar-expand-lg {
+            background: rgba(255, 0, 0, 0.7);
+        }
+    .navbar-nav .nav-link {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 20px;
+            transition: color 0.3s ease;
+        }
+    .navbar-nav .nav-link:hover {
+            color: #f8f9fa;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+    #nav-scroll {
+      top: 20px;
+      width: 250px;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .nav-pills .nav-link {
+      color: #333;
+      transition: all 0.3s ease-in-out;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    .nav-pills .nav-link:hover {
+      background-color: #dc3545;
+      color: #fff;
+    }
+    .nav-pills .nav-link.active {
+      background-color: #dc3545;
+      color: #fff;
+    }
+    .footer {
+            background-color: #222;
+            color: white;
+            padding: 50px 0;
+        }
+    .footer h5 {
+            font-weight: bold;
+            color: #f4a029;
+            margin-bottom: 20px;
+        }
+    .footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+    .footer a:hover {
+            color: #f4a029;
+        }
+    .footer .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: transparent;
+            border: 2px solid #f4a029;
+            border-radius: 50%;
+            font-size: 22px;
+            margin: 5px;
+            transition: all 0.3s ease-in-out;
+            color: white;
+        }
+    .footer .social-icons a:hover {
+            background-color: #f4a029;
+            color: black;
+            transform: scale(1.1);
+        }
+    .footer .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+    .footer .contact-info i { color: #f4a029; }
+    .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    .footer-logo img { width: 120px; height: auto; }
+    .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #bbb;
+        }
+    .footer-bottom p { margin: 0; }
+    
+    /* Section animations */
+    #about,
+    #gemstones,
+    #history,
+    #ruby-land {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease-out forwards;
+        }
+    #about { animation-delay: 0.2s; }
+    #gemstones { animation-delay: 0.4s; }
+    #history { animation-delay: 0.6s; }
+    #ruby-land { animation-delay: 0.8s; }
+    @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    .content {
+            max-width: 600px;
+            margin: auto;
+        }
+    
+    /* Image hover effect */
+    img {
+      transition: transform 0.3s ease-in-out;
+    }
+    img:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Updated .content-img: removed extra right margin */
+    .content-img {
+      width: 500px;
+      margin-right: 0;
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <img src="logo.png" width="50px">
+          &nbsp;&nbsp;&nbsp;
+          <a class="navbar-brand" href="#">Myanmar Treasure</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="gems.html">Gems</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="About Us.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact us.html">Contact Us</a>
+              </li>
+              <!-- Added Sign In Button -->
+              <li class="nav-item">
+                <button type="button" class="btn btn-outline-light ms-2" data-bs-toggle="modal" data-bs-target="#signInModal" style="margin-top: 5px;">
+                  Sign In
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <!-- Sign In Modal (Modified with a left image) -->
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signInModalLabel">Sign In</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <!-- Left Column: Image (visible on medium and larger screens) -->
+              <div class="col-md-4 d-none d-md-block">
+                <img src="sign_inpic.webp" alt="Sign In Image" class="img-fluid">
+              </div>
+              <!-- Right Column: Sign In Form -->
+              <div class="col-md-8">
+                <form>
+                  <div class="mb-3">
+                    <label for="signInEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="signInEmail" placeholder="name@example.com">
+                  </div>
+                  <div class="mb-3">
+                    <label for="signInPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="signInPassword" placeholder="Password">
+                  </div>
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Sign In</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row mt-5">
+        <h2 class="text-center"><b>Sapphire</b></h2>
+        <p class="text-center">Discover the timeless allure of Sapphire</p>
+        <br>
+        <div class="col-md-6">
+            <h2>Information and Modern Developments</h2>
+            <p>
+              Recent technological advancements in gemstone processing have led to even more precise cutting and treatment methods, ensuring that sapphire’s natural beauty is fully realized. Ongoing explorations in Myanmar and neighboring regions promise to reveal new deposits of high-quality sapphire, further cementing its role as a gemstone that bridges ancient traditions with modern innovation. Researchers and gemologists are also studying ways to maintain ethical practices in extraction, ensuring that these magnificent stones continue to be a sustainable resource for future generations.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <!-- Updated inline style: extra margin removed and using class "content-img" -->
+            <img src="Sapphire3.webp" style="width: 500px;" alt="Diamond" class="content-img">
+        </div>
+      </div>
+    </div>
+    <br>
+    <!-- About Section -->
+    <section id="about" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="Sapphire4.jpg" alt="About Myanmar Gemstones" class="img-fluid rounded">
+          </div>
+          <div class="col-lg-6">
+            <h2>Physical Properties</h2>
+            <p>
+              Composition: Sapphire is a crystalline form of aluminum oxide (Al₂O₃).<br>
+              Color: Although most commonly blue, sapphires can appear in various colors (known as fancy sapphires), including pink, yellow, and green, each created by trace elements such as iron, titanium, or chromium.<br>
+              Hardness: With a Mohs rating of 9, sapphire is extremely hard and suitable for everyday jewelry wear.<br>
+              Luster: Its vitreous luster enhances its natural brilliance, making it a favored choice for both decorative and functional applications.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <!-- Ruby Land Section -->
+    <section id="ruby-land" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>Sapphire in Myanmar</h2>
+            <p>
+              Myanmar’s gemstone-rich landscapes are renowned worldwide, and while the Mogok region is famed for its rubies, it is also an important source of high-quality sapphires. Artisanal miners and modern exploration methods have uncovered sapphire deposits that yield stones with vibrant, deep blue colors as well as rare fancy hues. These sapphires contribute to Myanmar’s longstanding reputation as a key player in the global gemstone market, adding to the rich tapestry of the country’s mineral heritage.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <img src="Sapphire5.jpg" alt="Ruby Land" class="img-fluid rounded">
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section id="about" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="Sapphire6.png" alt="About Myanmar Gemstones" class="img-fluid rounded">
+          </div>
+          <div class="col-lg-6">
+            <h2>Uses</h2>
+            <p>
+              Jewelry: Sapphires are widely used in rings, necklaces, earrings, and bracelets. They are especially popular in engagement rings, where their deep blue tones evoke a sense of timeless elegance.<br>
+              Decorative Objects: Beyond jewelry, sapphires are incorporated into luxury watches, ornamental carvings, and other high-end decorative items.<br>
+              Industrial Applications: Due to their hardness and resistance to scratches, sapphires also find uses in precision instruments and as durable scratch-resistant windows in high-tech devices.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section id="ruby-land" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>History</h2>
+            <p>
+              Across cultures, rubies have been associated with royalty and divine favor. Ancient texts and artifacts from India, Southeast Asia, and the Middle East frequently mention rubies as symbols of passion, courage, and prosperity. Over centuries, the gemstone has maintained its allure, influencing royal regalia and jewelry traditions worldwide. Kings and emperors often adorned their crowns and ceremonial robes with rubies, believing they granted wisdom and protection. In medieval Europe, rubies were thought to bring good fortune and ward off misfortune. Many historical accounts describe rulers gifting rubies to allies as tokens of loyalty and strength. The deep red hue of rubies has also been linked to the heart, symbolizing deep love and devotion. Today, rubies continue to be prized in high-end jewelry collections, embodying luxury and timeless elegance.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <img src="sapphire7.webp" alt="Ruby Land" class="img-fluid rounded">
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section id="about" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="Sapphire8.jpg" alt="About Myanmar Gemstones" class="img-fluid rounded">
+          </div>
+          <div class="col-lg-6">
+            <h2>Purification and Enhancement</h2>
+            <p>
+              Cutting and Polishing: Skilled artisans cut and polish sapphires to maximize their natural brilliance. The cutting techniques are designed to enhance light reflection, which highlights the gemstone’s innate color.
+Heat Treatment: A common practice used to improve the intensity and clarity of the stone. This method, refined over centuries, remains essential in the modern gemstone industry.
+Ethical Sourcing: In Myanmar, there is an increasing emphasis on sustainable and ethical mining practices. These modern techniques help preserve both the gemstone quality and the cultural heritage of the local mining communities.
+            </p>          
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section id="ruby-land" class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>Special About Sapphire</h2>
+            <p>
+              The allure of sapphire lies in its capacity to embody wisdom, virtue, and nobility. Its deep, mesmerizing blue is more than just a visual delight—it represents truth, loyalty, and a connection to the divine. Whether set in a piece of high-end jewelry or admired as a natural marvel, sapphire continues to captivate hearts and minds across generations and cultures.
+            </p>
+          </div>
+          <br>
+          <div class="col-lg-6">
+            <img src="Sapphire9.webp" alt="Ruby Land" class="img-fluid rounded ">
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <center><a href="gems.html" class="btn btn-danger">Back</a></center>
+    <br>
+    <br><br><br>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row text-center text-md-start">
+          <div class="col-md-4 footer-logo text-center">
+            <div class="d-flex flex-column align-items-center">
+              <img src="logo.png" alt="Logo" class="img-fluid">
+              <h4 class="mt-2">Myanmar Treasure</h4>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Access</h5>
+            <ul>
+              <li><a href="About Us.html">About Us</a></li>
+              <li><a href="contact us.html">Contact Us</a></li>
+              <li><a href="gems.html">Gems</a></li>
+              <li><a href="References link.html">Reference Link</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Contact Us</h5>
+            <p>myanmartreasuregroup123@gmail.com</p>
+            <div class="contact-info">
+              <i class="fa-solid fa-phone"></i> +959264342335, +959428234467
+            </div>
+            <div class="social-icons">
+              <a href="https://x.com/twitter?lang=en"><i class="fa-brands fa-twitter"></i></a>
+              <a href="https://www.pinterest.com/"><i class="fa-brands fa-pinterest"></i></a>
+              <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+              <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom text-center">
+          <p> &copy; 2025 Myanmar Treasure. All Rights Reserved</p>
+          <p><a href="https://www.termsfeed.com/live/f4365038-c87e-47ec-9135-f7bffbd5c918">Terms & Conditions</a> | <a href="https://www.termsfeed.com/live/8b8df691-f3bb-4752-935e-a0461e39d33a">Privacy Policy</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+            crossorigin="anonymous"></script>
+  </body>
+</html>
