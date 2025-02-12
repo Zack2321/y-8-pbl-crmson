@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myanmar Treasure: Gemstones</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link rel="icon" href="logo.png">
+  <style>
+
+
+    .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        .navbar-brand { color: white; font-weight: bold; }
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            padding: 10px 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+        .navbar-nav .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        .navbar.navbar-expand-lg {
+            background: rgba(255, 0, 0, 0.7);
+        }
+        .navbar-nav .nav-link {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 20px;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #f8f9fa;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to right, #4caf50, #81c784);
+      color: white;
+      text-align: center;
+      padding: 250px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .hero .background-rectangle {
+      position: absolute;
+      background-color: #dc3545;
+      border-radius: 15px;
+      width: calc(100% - 40px);
+      max-width: 800px;
+      padding: 30px 40px;
+      z-index: 1;
+    }
+    .image {
+      background-image: url('back-pic.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100%;
+    }
+
+    /* Services/Cards */
+    .services .card {
+      transition: transform 0.3s;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .services .card:hover {
+      transform: scale(1.05);
+    }
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* Footer Styling */
+    .footer {
+      background-color: #222;
+      color: white;
+      padding: 50px 0;
+    }
+    .footer h5 {
+      font-weight: bold;
+      color: #f4a029;
+      margin-bottom: 20px;
+    }
+    .footer a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease-in-out;
+    }
+    .footer a:hover {
+      color: #f4a029;
+    }
+    .footer .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background-color: transparent;
+      border: 2px solid #f4a029;
+      border-radius: 50%;
+      font-size: 22px;
+      margin: 5px;
+      transition: all 0.3s ease-in-out;
+      color: white;
+    }
+    .footer .social-icons a:hover {
+      background-color: #f4a029;
+      color: black;
+      transform: scale(1.1);
+    }
+    .footer .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .footer .contact-info i {
+      color: #f4a029;
+    }
+    .footer-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .footer-logo img {
+      width: 120px;
+      height: auto;
+    }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #bbb;
+    }
+    .footer-bottom p {
+      margin: 0;
+    }
+
+    /* Section Animations */
+    #about,
+    #gemstones,
+    #history,
+    #ruby-land {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease-out forwards;
+    }
+    #about { animation-delay: 0.2s; }
+    #gemstones { animation-delay: 0.4s; }
+    #history { animation-delay: 0.6s; }
+    #ruby-land { animation-delay: 0.8s; }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Carousel Image Size */
+    .carousel-item img {
+      height: 500px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    /* New Animation for Hero Content – Zoom In */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: zoomIn 1s ease-out;
+    }
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* New Animation for Services Heading */
+    .services h2 {
+      animation: fadeInUp 1s ease-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .carousel-item img {
+      height: 500px;
+      object-fit: cover;
+      width: 100%;
+    }
+    .carousel-caption h5,
+    .carousel-caption p {
+      text-align: center;
+    }
+    img {
+      transition: transform 0.3s ease-in-out;
+    }
+    img:hover {
+      transform: scale(1.05);
+    }
+    /* Added CSS to make the Sign In button font match the navbar font */
+    .navbar .btn {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <img src="logo.png" width="50px">
+      &nbsp;&nbsp;&nbsp;
+      <a class="navbar-brand" href="#">Myanmar Treasure</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gems.html">Gems</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About Us.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact us.html">Contact Us</a>
+          </li>
+          <!-- Added Sign In Button -->
+          <li class="nav-item">
+            <button type="button" class="btn btn-outline-light ms-2" data-bs-toggle="modal" data-bs-target="#signInModal" style="margin-top: 5px;">
+              Sign In
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Sign In Modal (Modified with a left image) -->
+  <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signInModalLabel">Sign In</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <!-- Left Column: Image (visible on medium and larger screens) -->
+            <div class="col-md-4 d-none d-md-block">
+              <img src="sign_inpic.webp" alt="Sign In Image" class="img-fluid">
+            </div>
+            <!-- Right Column: Sign In Form -->
+            <div class="col-md-8">
+              <form>
+                <div class="mb-3">
+                  <label for="signInEmail" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="signInEmail" placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                  <label for="signInPassword" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="signInPassword" placeholder="Password">
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="rememberMe">
+                  <label class="form-check-label" for="rememberMe">Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <img src="back-pic.jpg" class="d-block w-100" alt="Mogok Valley">
+        <div class="carousel-caption d-none d-md-block text-center">
+        
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <img src="back-pic.2.jpg" class="d-block w-100" alt="Myanmar Map">
+        <div class="carousel-caption d-none d-md-block text-center">
+          
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <img src="back-pic.3.jpg" class="d-block w-100" alt="Ruby Land">
+        <div class="carousel-caption d-none d-md-block text-center">
+          
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <!-- Hero Section -->
+ 
+
+  <!-- Services Section -->
+  <section id="services" class="services py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Our Gemstones</h2>
+      <div class="row">
+        <!-- Diamond Card -->
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <img src="diamond.jpg" class="card-img-top" alt="Diamond">
+            <div class="card-body">
+              <h5 class="card-title">Diamond</h5>
+              <p class="card-text"></p>
+              <a href="diamond.html" class="btn btn-danger">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Gold Card -->
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <img src="goldgyi.jpg" class="card-img-top" alt="Gold">
+            <div class="card-body">
+              <h5 class="card-title">Gold</h5>
+              <p class="card-text"></p>
+              <a href="gold.html" class="btn btn-danger">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Ruby Card -->
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <img src="ruby.jpg" class="card-img-top" alt="Ruby">
+            <div class="card-body">
+              <h5 class="card-title">Ruby</h5>
+              <p class="card-text"></p>
+              <a href="ruby.html" class="btn btn-danger">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Platinum Card -->
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <img src="jade3.avif" class="card-img-top" alt="Platinum">
+            <div class="card-body">
+              <h5 class="card-title">Jade</h5>
+              <p class="card-text"></p>
+              <a href="jade.html" class="btn btn-warning">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Sapphire Card -->
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <img src="sapphire.jpg" class="card-img-top" alt="Sapphire">
+            <div class="card-body">
+              <h5 class="card-title">Sapphire</h5>
+              <p class="card-text"></p>
+              <a href="sapphire.html" class="btn btn-warning">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Pearls Card -->
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <img src="pearls.webp" class="card-img-top" alt="Pearls">
+            <div class="card-body">
+              <h5 class="card-title">Pearls</h5>
+              <p class="card-text"></p>
+              <a href="pearls.html" class="btn btn-warning">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Topaz Card -->
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <img src="topaz.jpg" class="card-img-top" alt="Topaz">
+            <div class="card-body">
+              <h5 class="card-title">Topaz</h5>
+              <p class="card-text"></p>
+              <a href="topaz.html" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Emerald Card -->
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <img src="emerald.jpg" class="card-img-top" alt="Emerald">
+            <div class="card-body">
+              <h5 class="card-title">Emerald</h5>
+              <p class="card-text"></p>
+              <a href="emerald.html" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Morganite Card -->
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <img src="morganite.jpg" class="card-img-top" alt="Morganite">
+            <div class="card-body">
+              <h5 class="card-title">Morganite</h5>
+              <p class="card-text"></p>
+              <a href="morganite.html" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div><!-- .row -->
+    </div><!-- .container -->
+  </section>
+
+  <br><br><br>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row text-center text-md-start">
+        <div class="col-md-4 footer-logo text-center">
+          <div class="d-flex flex-column align-items-center">
+            <img src="logo.png" alt="Logo" class="img-fluid">
+            <h4 class="mt-2">Myanmar Treasure</h4>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Access</h5>
+          <ul class="list-unstyled">
+            <li><a href="About Us.html">About Us</a></li>
+            <li><a href="contact us.html">Contact Us</a></li>
+            <li><a href="gems.html">Gems</a></li>
+            <li><a href="References link.html">Reference Link</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact Us</h5>
+          <p>myanmartreasuregroup123@gmail.com</p>
+          <div class="contact-info">
+            <i class="fa-solid fa-phone"></i> +959264342335, +959428234467
+          </div>
+          <div class="social-icons">
+            <a href="https://x.com/twitter?lang=en"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.pinterest.com/"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p> &copy; 2025 Myanmar Treasure. All Rights Reserved</p>
+        <p><a href="https://www.termsfeed.com/live/f4365038-c87e-47ec-9135-f7bffbd5c918">Terms & Conditions</a> | <a href="https://www.termsfeed.com/live/8b8df691-f3bb-4752-935e-a0461e39d33a">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

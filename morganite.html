@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Morganite</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="logo.png">
+  </head>
+  <style>
+        body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Read More Section */
+    .more-text {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+        opacity: 0;
+    }
+    .read-more-btn:checked ~ .more-text {
+        max-height: 500px;
+        opacity: 1;
+        animation: fadeIn 0.5s ease-out;
+    }
+    .read-more-btn { display: none; }
+    .read-more-label {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 25px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .read-more-label:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+    .read-more-label:active { transform: translateY(0); }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .read-more-label i {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+    }
+    .read-more-btn:checked ~ .read-more-label i {
+        transform: rotate(180deg);
+    }
+    /* Navbar and Footer (unchanged) */
+    .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        .navbar-brand { color: white; font-weight: bold; }
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            padding: 10px 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+        .navbar-nav .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        .navbar.navbar-expand-lg {
+            background: rgba(255, 0, 0, 0.7);
+        }
+        .navbar-nav .nav-link {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 20px;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #f8f9fa;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        .footer {
+            background-color: #222;
+            color: white;
+            padding: 50px 0;
+        }
+        .footer h5 {
+            font-weight: bold;
+            color: #f4a029;
+            margin-bottom: 20px;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+        .footer a:hover {
+            color: #f4a029;
+        }
+        .footer .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: transparent;
+            border: 2px solid #f4a029;
+            border-radius: 50%;
+            font-size: 22px;
+            margin: 5px;
+            transition: all 0.3s ease-in-out;
+            color: white;
+        }
+        .footer .social-icons a:hover {
+            background-color: #f4a029;
+            color: black;
+            transform: scale(1.1);
+        }
+        .footer .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .footer .contact-info i { color: #f4a029; }
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .footer-logo img { width: 120px; }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #bbb;
+        }
+        .footer-bottom p { margin: 0; }
+        img {
+      transition: transform 0.3s ease-in-out;
+    }
+    img:hover {
+      transform: scale(1.05);
+    }
+    .content-img {
+  width: 500px;
+  
+}
+  </style>
+  <body>
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <img src="logo.png" width="50px">
+    &nbsp;&nbsp;&nbsp;
+    <a class="navbar-brand" href="#">Myanmar Treasure</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="gems.html">Gems</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="About Us.html">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact us.html">Contact Us</a>
+        </li>
+        <!-- Added Sign In Button -->
+        <li class="nav-item">
+          <button type="button" class="btn btn-outline-light ms-2" data-bs-toggle="modal" data-bs-target="#signInModal" style="margin-top: 5px;">
+            Sign In
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Sign In Modal (Modified with a left image) -->
+<div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signInModalLabel">Sign In</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- Left Column: Image (visible on medium and larger screens) -->
+          <div class="col-md-4 d-none d-md-block">
+            <img src="sign_inpic.webp" alt="Sign In Image" class="img-fluid">
+          </div>
+          <!-- Right Column: Sign In Form -->
+          <div class="col-md-8">
+            <form>
+              <div class="mb-3">
+                <label for="signInEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="signInEmail" placeholder="name@example.com">
+              </div>
+              <div class="mb-3">
+                <label for="signInPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signInPassword" placeholder="Password">
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row mt-5">
+        <h2 class="text-center">Morganite</h2>
+        <p class="text-center">Discover the soft glow and delicate charm of Morganite</p>
+        <br>
+        <div class="col-md-6">
+            <h2>Information and Modern Developments</h2>
+            <p>Morganite—a pink to peach variety of beryl—has recently attracted increased attention in Myanmar’s gemstone market. Modern mining and cutting practices have improved the extraction and presentation of morganite’s delicate hues. Advances in gemological research have refined methods to grade and certify morganite based on color saturation and clarity. Sustainable and ethical mining practices are being adopted to ensure that local communities benefit from its production. New technologies such as laser imaging and digital certification are helping verify authenticity and treatment processes. The gemstone’s rising global popularity has spurred investments in exploration and marketing. Collaboration between local artisans and international experts is fostering innovation in cutting techniques that best highlight morganite’s natural radiance. Ethical sourcing and transparent practices are becoming standard in the morganite trade. Modern infrastructure has improved both the yield and quality of morganite production. These developments collectively position morganite as a modern gemstone with timeless appeal.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <!-- Removed margin-right: 700px -->
+            <img src="morganite4.jpg" style="width: 500px;" alt="Diamond" class="content-img">
+        </div>
+      </div>
+    </div>
+    <br>
+     <!-- About Section -->
+  <section id="about" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="morganite5.jpg" alt="About Myanmar Gemstones" class="img-fluid rounded content-img">
+        </div>
+        <div class="col-lg-6">
+          <h2>Physical Properties</h2>
+          <p>
+            Morganite belongs to the beryl family and is distinguished by its soft pink to peach coloration caused by trace amounts of manganese. With a hardness of approximately 7.5 to 8 on the Mohs scale, it is fairly durable while still requiring careful handling to preserve its delicate clarity. Its refractive properties produce a gentle, luminous glow that enhances its pastel tones. The gemstone is typically faceted in cuts designed to maximize both brilliance and the natural diffusion of light. Although generally free of significant inclusions, subtle natural characteristics ensure that no two morganites are exactly alike. The overall translucency and smooth texture of morganite contribute to its understated elegance. Its gentle color variations allow for versatility in jewelry design, making it suitable for both modern and vintage styles. Detailed gemological assessments now provide clear records of its quality and any treatments applied. The combination of strength and delicate beauty makes morganite appealing for a range of jewelry applications. Overall, its soft, romantic hues have positioned morganite as a coveted gemstone among contemporary collectors.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <!-- Ruby Land Section -->
+  <section id="ruby-land" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2>Morganite in Myanmar</h2>
+          <p>In Myanmar, morganite is emerging as a gemstone of interest as improved exploration techniques uncover new deposits. Although not as historically celebrated as rubies or jade, Myanmar morganite is gaining recognition for its exceptional quality and alluring hues. Local miners employ a combination of traditional methods and modern technology to carefully extract and process these delicate stones. Efforts to ensure ethical sourcing and sustainable practices are increasingly evident within the morganite industry. Early adopters of modern processing methods have reported significant improvements in both clarity and color vibrancy. The gemstone’s introduction into Myanmar’s diverse gem portfolio adds a fresh dimension to the country’s renowned mineral wealth. Export initiatives and certification programs help verify its origin and quality for international buyers. Traditional expertise is being enhanced by modern techniques, ensuring morganite is handled with utmost care. As market demand grows, morganite is quickly becoming a favored choice among jewelry designers and collectors alike. Its rising profile is reflective of Myanmar’s evolving gemstone industry and commitment to quality.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <img src="morganite6.jpg" alt="Ruby Land" class="img-fluid rounded content-img">
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <section id="about" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="morganite7.jpg" alt="About Myanmar Gemstones" class="img-fluid rounded content-img">
+        </div>
+        <div class="col-lg-6">
+          <h2>Uses</h2>
+          <p>
+            Morganite is highly favored for its soft, romantic hues and is commonly featured in elegant jewelry designs such as engagement rings, pendants, earrings, and bracelets. Its gentle pink and peach tones complement both minimalist settings and elaborate vintage-inspired designs. The gemstone’s warm, inviting color makes it ideal for pieces meant to symbolize love, compassion, and emotional balance. Designers appreciate morganite for its ability to add a subtle pop of color without overwhelming other elements in a piece. Its durability, combined with careful setting practices, allows for morganite to be worn daily in fine jewelry. Morganite is also often used in bespoke pieces that emphasize personalized design elements. Its rising popularity in contemporary collections is bolstered by its versatility in various settings. Beyond jewelry, morganite is sometimes used in decorative inlays and luxury accessories. The gemstone’s modern appeal ensures that it remains a sought-after option for both classic and innovative designs. Overall, morganite’s delicate beauty and symbolic warmth have cemented its place in today’s jewelry market.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <section id="ruby-land" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2>History</h2>
+          <p>Although morganite was only identified and named in the early 20th century, its appeal has rapidly grown since its discovery. Initially celebrated for its unique pastel coloration and rarity, morganite quickly became a favorite among modern jewelry designers. While it does not boast the ancient lore of other gemstones, its contemporary history is marked by its association with romance and sophistication. Early adopters of morganite valued it for its subtle beauty and versatility in design. In Myanmar, the recent discovery and subsequent development of morganite deposits are creating a new chapter in the country’s gemstone legacy. Its modern emergence is supported by both traditional mining knowledge and innovative processing techniques. Although relatively new to the market, morganite’s distinctive charm has resonated with collectors worldwide. Its story is still unfolding, adding an element of excitement and discovery for gem enthusiasts. Historical records now note morganite as an emblem of modern elegance and refined taste. This blend of contemporary history and rising demand positions morganite as a gem with significant future potential.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <img src="morganite3.jpg" alt="Ruby Land" class="img-fluid rounded content-img">
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <section id="about" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="morganite2.jpg" alt="About Myanmar Gemstones" class="img-fluid rounded content-img">
+        </div>
+        <div class="col-lg-6">
+          <h2>Purification and Enhancement</h2>
+          <p>
+            To enhance color and clarity, morganite is often subjected to controlled heat treatments under precise laboratory conditions. These modern enhancement techniques are designed to preserve the stone’s delicate hues while eliminating minor imperfections. Advanced cleaning and polishing processes remove surface impurities without compromising the gemstone’s natural luster. Detailed gemological tests are conducted to ensure that any treatments are stable and fully disclosed to buyers. The controlled processes ensure that morganite’s inherent beauty remains intact even after enhancement. Modern laboratories document every step of the treatment, contributing to greater transparency in the market. Ethical guidelines dictate that any enhancement must be clearly reported so that collectors are fully informed. These methods have significantly improved the overall quality and market value of morganite. Regular quality assessments ensure that the gemstone retains its delicate charm over time. Overall, purification and enhancement practices for morganite are continually refined to balance natural beauty with modern perfection.
+          </p>          
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <section id="ruby-land" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2>Special About Morganite</h2>
+          <p>Morganite is celebrated for its soft, romantic colors and the emotional warmth it conveys, making it a popular choice for jewelry that symbolizes love and compassion. Its gentle, pastel tones offer a subtle contrast to bolder gemstones and have a distinctive, calming effect. The gemstone’s delicate hues are reminiscent of a serene sunrise, evoking feelings of hope and tenderness. In Myanmar, the emergence of high-quality morganite enriches the nation’s already diverse gemstone portfolio. Its modern appeal is matched by its ability to convey deep emotional symbolism, making it a cherished gift for special occasions. Morganite’s rising popularity is a testament to its unique blend of beauty and contemporary relevance. Artisans are continually experimenting with innovative designs that highlight the stone’s natural radiance. The gemstone’s versatility makes it suitable for both modern minimalism and elaborate vintage-inspired designs. Its growing demand has spurred investments in sustainable and ethical mining practices across Myanmar. Ultimately, morganite’s combination of refined elegance and emotional resonance makes it one of the most special modern gemstones available.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <img src="Morganite.webp" alt="Ruby Land" class="img-fluid rounded content-img">
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <center><a href="gems.html" class="btn btn-danger">Back</a></center>
+    <br>
+    <br><br><br>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row text-center text-md-start">
+        <div class="col-md-4 footer-logo text-center">
+          <div class="d-flex flex-column align-items-center">
+            <img src="logo.png" alt="Logo" class="img-fluid">
+            <h4 class="mt-2">Myanmar Treasure</h4>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Access</h5>
+          <ul class="list-unstyled">
+            <li><a href="About Us.html">About Us</a></li>
+            <li><a href="contact us.html">Contact Us</a></li>
+            <li><a href="gems.html">Gems</a></li>
+            <li><a href="References link.html">Reference Link</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact Us</h5>
+          <p>myanmartreasuregroup123@gmail.com</p>
+          <div class="contact-info">
+            <i class="fa-solid fa-phone"></i> +959264342335, +959428234467
+          </div>
+          <div class="social-icons">
+            <a href="https://x.com/twitter?lang=en"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.pinterest.com/"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p> &copy; 2025 Myanmar Treasure. All Rights Reserved</p>
+        <p><a href="https://www.termsfeed.com/live/f4365038-c87e-47ec-9135-f7bffbd5c918">Terms & Conditions</a> | <a href="https://www.termsfeed.com/live/8b8df691-f3bb-4752-935e-a0461e39d33a">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+            crossorigin="anonymous"></script>
+  </body>
+</html>

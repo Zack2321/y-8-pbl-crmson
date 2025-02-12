@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Emerald</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="logo.png">
+  </head>
+  <style>
+     body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Read More Section */
+    .more-text {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+        opacity: 0;
+    }
+    .read-more-btn:checked ~ .more-text {
+        max-height: 500px;
+        opacity: 1;
+        animation: fadeIn 0.5s ease-out;
+    }
+    .read-more-btn { display: none; }
+    .read-more-label {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 25px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .read-more-label:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+    .read-more-label:active { transform: translateY(0); }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .read-more-label i {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+    }
+    .read-more-btn:checked ~ .read-more-label i {
+        transform: rotate(180deg);
+    }
+    /* Navbar and Footer (unchanged) */
+    .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+    @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+    .navbar-brand { color: white; font-weight: bold; }
+    .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            padding: 10px 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+    .navbar-nav .nav-link:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+    .navbar-nav .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+    .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+    .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+    .navbar.navbar-expand-lg {
+            background: rgba(255, 0, 0, 0.7);
+        }
+    .navbar-nav .nav-link {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 20px;
+            transition: color 0.3s ease;
+        }
+    .navbar-nav .nav-link:hover {
+            color: #f8f9fa;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+    .footer {
+            background-color: #222;
+            color: white;
+            padding: 50px 0;
+        }
+    .footer h5 {
+            font-weight: bold;
+            color: #f4a029;
+            margin-bottom: 20px;
+        }
+    .footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+    .footer a:hover {
+            color: #f4a029;
+        }
+    .footer .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: transparent;
+            border: 2px solid #f4a029;
+            border-radius: 50%;
+            font-size: 22px;
+            margin: 5px;
+            transition: all 0.3s ease-in-out;
+            color: white;
+        }
+    .footer .social-icons a:hover {
+            background-color: #f4a029;
+            color: black;
+            transform: scale(1.1);
+        }
+    .footer .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+    .footer .contact-info i { color: #f4a029; }
+    .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    .footer-logo img { width: 120px; }
+    .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #bbb;
+        }
+    .footer-bottom p { margin: 0; }
+    img {
+      transition: transform 0.3s ease-in-out;
+    }
+    img:hover {
+      transform: scale(1.05);
+    }
+    /* Update .content-img to remove unwanted margin */
+    .content-img {
+      width: 500px;
+      margin-right: 0;
+    }
+  </style>
+  <body>
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <img src="logo.png" width="50px">
+    &nbsp;&nbsp;&nbsp;
+    <a class="navbar-brand" href="#">Myanmar Treasure</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="gems.html">Gems</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="About Us.html">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact us.html">Contact Us</a>
+        </li>
+        <!-- Added Sign In Button -->
+        <li class="nav-item">
+          <button type="button" class="btn btn-outline-light ms-2" data-bs-toggle="modal" data-bs-target="#signInModal" style="margin-top: 5px;">
+            Sign In
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Sign In Modal (Modified with a left image) -->
+<div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signInModalLabel">Sign In</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- Left Column: Image (visible on medium and larger screens) -->
+          <div class="col-md-4 d-none d-md-block">
+            <img src="sign_inpic.webp" alt="Sign In Image" class="img-fluid">
+          </div>
+          <!-- Right Column: Sign In Form -->
+          <div class="col-md-8">
+            <form>
+              <div class="mb-3">
+                <label for="signInEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="signInEmail" placeholder="name@example.com">
+              </div>
+              <div class="mb-3">
+                <label for="signInPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signInPassword" placeholder="Password">
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row mt-5">
+        <h2 class="text-center">Emerald</h2>
+        <p class="text-center">Embrace the enchanting green of Emerald</p>
+        <br>
+        <div class="col-md-6">
+            <h2>Information and Modern Developments</h2>
+            <p>Emeralds from Myanmar are steadily gaining attention as modern mining and gemological analysis improve their identification and grading. Advanced imaging techniques and spectroscopy help distinguish natural inclusions from treatments, ensuring a clearer assessment of quality. Sustainable mining practices are being increasingly adopted, balancing extraction with environmental stewardship. Local miners are collaborating with international experts to refine extraction and processing techniques. Digital certification platforms now provide detailed information about each emerald’s origin and treatment history. Investment in state-of-the-art cutting and polishing technology has further enhanced the stone’s natural allure. Modern laboratories offer precise grading and clarity assessments that honor the gem’s unique characteristics. Ethical sourcing practices have become a priority, ensuring that emerald extraction supports local communities. Ongoing research into stabilization techniques promises to extend the longevity of emeralds. These combined efforts are bolstering the global reputation of Myanmar emeralds as both exquisite and responsibly sourced.
+            </p>
+        </div>
+        <div class="col-md-6">
+                <!-- Removed the extra margin in the inline style -->
+                <img src="emerald3.jpg" style="width: 500px; margin-bottom: 10px;" alt="Diamond" class="content-img">
+        </div>
+      </div>
+    </div>
+      <!-- About Section -->
+  <section id="about" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="emerald4.jpg" alt="About Myanmar Gemstones" class="rounded content-img">
+        </div>
+        <div class="col-lg-6">
+          <h2>Physical Properties</h2>
+          <p>
+            Emeralds, a variety of the beryl family, are prized for their captivating green hues derived from trace amounts of chromium and vanadium. They typically measure between 7.5 and 8 on the Mohs scale, though natural inclusions often necessitate careful handling. The characteristic “garden” of inclusions is embraced as a unique fingerprint that enhances each emerald’s individuality. Their high refractive index and translucent quality create an enchanting play of light and color. Specialized cutting techniques, such as the emerald cut, are designed to maximize brilliance while preserving structural integrity. The interplay of natural inclusions and vibrant color gives each emerald a distinct personality. Variations in tone and saturation mean that no two emeralds are exactly alike. Detailed optical analysis now aids in distinguishing between naturally formed and treated stones. Modern tools have enabled gemologists to understand the internal structure of emeralds with greater precision. Overall, the combination of natural beauty and carefully honed cutting practices makes emeralds particularly special.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <!-- Ruby Land Section -->
+  <section id="ruby-land" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2>Emerald in Myanmar</h2>
+          <p>Although Myanmar is more famed for its rubies and jade, its emeralds are increasingly recognized for their deep, captivating green tones. The naturally occurring deposits yield emeralds with a unique internal “garden” that is celebrated by collectors. Local traders work closely with modern gemological laboratories to certify and enhance the natural quality of these emeralds. The gemstone has begun to carve out its own niche in Myanmar’s rich legacy of gemstone craftsmanship. Efforts are underway to promote ethical sourcing and environmentally responsible mining practices in emerald extraction. While still emerging on the global stage, Myanmar emeralds are steadily gaining recognition for their natural charm and distinct character. Traditional mining techniques are being updated with modern safety and processing innovations. Local communities are benefiting from improved training and infrastructure initiatives in the emerald sector. Enhanced export protocols and quality controls are helping secure the gem’s market presence. As interest grows, Myanmar emeralds are poised to become an increasingly important part of the country’s gem portfolio.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <img src="emerald5.jpg" alt="Ruby Land" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <section id="about" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="emerald6.jpg" alt="About Myanmar Gemstones" class="rounded content-img">
+        </div>
+        <div class="col-lg-6">
+          <h2>Uses</h2>
+          <p>
+            Emeralds are primarily set into fine jewelry pieces such as rings, necklaces, earrings, and brooches. Their vibrant green color makes them a natural focal point in both modern and traditional designs. Designers often combine emeralds with diamonds or other complementary gemstones to create striking contrasts. In some cultures, emeralds are believed to promote healing, emotional balance, and personal renewal. Beyond personal adornment, emeralds have historically been incorporated into ceremonial objects and talismans. Their symbolism of growth and renewal resonates with many wearers, making them popular for milestone jewelry. High-quality emeralds are also considered a long-term investment due to their rarity and timeless appeal. The stone’s inherent beauty has inspired both classic and contemporary jewelry collections. Modern cutting techniques ensure that emeralds are not only visually appealing but also durable enough for everyday wear. Overall, emeralds continue to be celebrated for their beauty, symbolism, and versatility in jewelry design.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <section id="ruby-land" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2>History</h2>
+          <p>Throughout history, emeralds have been revered by diverse civilizations, from the ancient Egyptians to the Incas, for their rarity and mystical allure. In Myanmar, emeralds are woven into the tapestry of local legends and cultural narratives. They have adorned the crowns and regalia of nobility and were once believed to possess protective powers. Ancient lore credited emeralds with the ability to enhance intuition and foresight. Historical texts reveal that emeralds were symbols of fertility, renewal, and eternal beauty. Their storied past has only added to their mystique and value in the modern gemstone market. The fascination with emeralds has persisted over the centuries, influencing art, literature, and ritual practices. Despite the challenges of natural formation, each emerald carries a unique story encapsulated in its natural inclusions. The blend of myth and natural wonder continues to captivate collectors and historians alike. Ultimately, the emerald’s history enriches its contemporary allure and enduring mysticism.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <img src="emerald7.jpg" alt="Ruby Land" class="rounded content-img">
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <section id="ruby-land" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="emerald8.jpg" alt="About Myanmar Gemstones" class="img-fluid rounded content-img">
+        </div>
+        <div class="col-lg-6">
+          <h2>Purification and Enhancement</h2>
+          <p>
+            Emeralds are often treated with oils or resins to enhance clarity and improve stability, a practice that has evolved over centuries. Traditional methods have been refined into modern processes that ensure minimal intervention while preserving natural beauty. Advanced techniques, including controlled heating and chemical analysis, help maintain the gem’s characteristic “garden.” Reputable laboratories now conduct thorough assessments to certify the authenticity of any treatments applied. These processes are fully disclosed, ensuring transparency in the global emerald market. The treatments not only enhance visual appeal but also improve the stone’s structural durability. Ongoing research is focused on developing even more sustainable methods to enhance emerald quality. Regular monitoring and certification guarantee that the natural allure of the stone is never compromised. Modern enhancement practices have contributed to maintaining the gem’s value over time. Overall, these careful treatments ensure that each emerald retains its unique natural character while meeting contemporary standards.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <section id="ruby-land" class="section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2>Special About emerald</h2>
+          <p>The enchanting green hue of emeralds is emblematic of nature’s vitality and renewal. Their distinctive “garden” of internal inclusions is celebrated as a mark of natural authenticity and individuality. Each emerald carries a unique story, reflected in its subtle variations of color and light. The stone is steeped in symbolism, representing growth, rebirth, and eternal hope. Emeralds are often associated with wisdom and balance, making them popular as both ornamental and protective talismans. Their enduring allure has captivated collectors, historians, and jewelers alike. The blend of natural imperfection and captivating beauty gives each emerald a personality that cannot be replicated. In Myanmar, the emerging reputation of emeralds is supported by both tradition and modern innovation. Their mystique is further enhanced by the intricate methods used to reveal and preserve their inner beauty. Ultimately, the emerald remains a timeless symbol of nature’s splendor and an enduring gem of Myanmar’s rich heritage.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <img src="emerald9.webp" alt="Ruby Land" class="img-fluid rounded content-img">
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <center><a href="gems.html" class="btn btn-danger">Back</a></center>
+  <br>
+  <br><br><br>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row text-center text-md-start">
+        <div class="col-md-4 footer-logo text-center">
+          <div class="d-flex flex-column align-items-center">
+            <img src="logo.png" alt="Logo" class="img-fluid">
+            <h4 class="mt-2">Myanmar Treasure</h4>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Access</h5>
+          <ul class="list-unstyled">
+            <li><a href="About Us.html">About Us</a></li>
+            <li><a href="contact us.html">Contact Us</a></li>
+            <li><a href="gems.html">Gems</a></li>
+            <li><a href="References link.html">Reference Link</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact Us</h5>
+          <p>myanmartreasuregroup123@gmail.com</p>
+          <div class="contact-info">
+            <i class="fa-solid fa-phone"></i> +959264342335, +959428234467
+          </div>
+          <div class="social-icons">
+            <a href="https://x.com/twitter?lang=en"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.pinterest.com/"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p> &copy; 2025 Myanmar Treasure. All Rights Reserved</p>
+        <p><a href="https://www.termsfeed.com/live/f4365038-c87e-47ec-9135-f7bffbd5c918">Terms & Conditions</a> | <a href="https://www.termsfeed.com/live/8b8df691-f3bb-4752-935e-a0461e39d33a">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+            crossorigin="anonymous"></script>
+  </body>
+</html>
